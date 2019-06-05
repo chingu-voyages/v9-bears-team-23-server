@@ -8,3 +8,5 @@ router.get('/user/:userId', (req, res) => {
   const {userId} = req.query.param // eslint-disable-line
   // Get by userId
 })
+
+module.exports = router
