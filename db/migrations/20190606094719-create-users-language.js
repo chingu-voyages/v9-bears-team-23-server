@@ -1,15 +1,28 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Languages', {
+    return queryInterface.createTable('UsersLanguages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { // User hasMany Languages n:n
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      languageId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { // Languages hasMany Users n:n
+          model: 'Languages',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +37,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Languages')
+    return queryInterface.dropTable('UsersLanguages')
   },
 }

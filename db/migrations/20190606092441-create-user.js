@@ -1,15 +1,33 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Languages', {
+    return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      username: {
         type: Sequelize.STRING,
+      },
+      email: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
+      countryId: {
+        type: Sequelize.INTEGER,
+      },
+      role: {
+        type: Sequelize.ENUM,
+        values: ['None', 'Admin', 'SuperAdmin', 'Student', 'Teacher'],
+        defaultValue: 'None',
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +42,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Languages')
+    return queryInterface.dropTable('Users')
   },
 }
