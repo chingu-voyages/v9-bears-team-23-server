@@ -1,4 +1,3 @@
-'use strict'
 module.exports = (sequelize, DataTypes) => {
   const UsersLanguage = sequelize.define('UsersLanguage', {
     userId: DataTypes.INTEGER,

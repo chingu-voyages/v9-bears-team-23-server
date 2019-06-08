@@ -1,4 +1,3 @@
-'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Advert = sequelize.define('Advert', {
     price: DataTypes.INTEGER,
