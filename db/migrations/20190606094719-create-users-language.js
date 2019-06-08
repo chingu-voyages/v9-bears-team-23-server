@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { // User hasMany Languages n:n
-          model: 'Users',
+          model: 'user',
           key: 'id',
         },
       },

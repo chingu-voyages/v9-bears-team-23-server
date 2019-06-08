@@ -1,6 +1,10 @@
+const _ = require('lodash')
+
+const konst = require('konst')
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('user', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -21,7 +25,7 @@ module.exports = {
       },
       role: {
         type: Sequelize.ENUM,
-        values: ['None', 'Admin', 'SuperAdmin', 'Student', 'Teacher'],
+        values: _.valuesIn(konst.role),
         defaultValue: 'None',
         allowNull: false,
         validate: {
@@ -41,6 +45,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users')
+    return queryInterface.dropTable('user')
   },
 }

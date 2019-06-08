@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.changeColumn('Users', 'countryId', {
+    return queryInterface.changeColumn('user', 'countryId', {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
@@ -10,7 +10,7 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.changeColumn('Users', 'countryId', {
+    return queryInterface.changeColumn('user', 'countryId', {
       type: Sequelize.INTEGER,
       allowNull: false,
     })

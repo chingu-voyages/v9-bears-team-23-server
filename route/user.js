@@ -1,7 +1,20 @@
 const router = require('express').Router()
+const joi = require('joi')
 
-router.get('/user', (req, res) => {
-  // Get all users
+const validate = require('middleware/validate')
+
+const userRepo = require('repo/user')
+
+router.post('/signup', validate.body({
+  email: joi.string().email().required(),
+}), (req, res) => {
+
+})
+
+router.get('/user', async (req, res, next) => {
+  const r = await userRepo.getAll()
+  console.log(r)
+  return res.json(r)
 })
 
 router.get('/user/:userId', (req, res) => {
