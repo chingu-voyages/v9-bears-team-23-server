@@ -1,21 +1,13 @@
-'use strict';
-
+'use strict'
+const languages = require('../../helpers/languages-english')
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Languages', [
-      {
-        name: 'English',
-      },
-      {
-        name: 'Hrvatski',
-      },
-      {
-        name: 'Polskie',
-      },
-    ], {})
+    return queryInterface.bulkInsert('Languages',
+      languages
+      , {})
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Language', null, {})
+    return queryInterface.bulkDelete('Languages', null, {})
   },
 }

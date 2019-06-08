@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {})
   Language.associate = function (models) {
     // associations can be defined here
-    Language.belongsToMany(models.User, {through: 'UserLanguages', foreignKey: 'languageId', as: 'users'})
+    Language.belongsToMany(models.User, {through: 'UsersLanguages', foreignKey: 'languageId', as: 'users'})
   }
   return Language
 }
