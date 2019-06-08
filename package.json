@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "db:seed": "sequelize db:seed:all",
+    "db:setup": "sequelize db:create db:migrate db:seed",
     "sequelize": "sequelize"
   },
   "keywords": [],
