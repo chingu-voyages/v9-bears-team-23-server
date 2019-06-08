@@ -1,4 +1,4 @@
-const skills = require('../../helpers/skills')
+const skills = require('helpers/skills')
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Skills',
