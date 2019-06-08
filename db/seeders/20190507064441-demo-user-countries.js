@@ -1,4 +1,4 @@
-const countries = require('../../helpers/countries')
+const countries = require('helpers/countries')
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Countries',
