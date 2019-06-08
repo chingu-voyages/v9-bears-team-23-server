@@ -1,4 +1,3 @@
-'use strict'
 const skills = require('../../helpers/skills')
 module.exports = {
   up: (queryInterface, Sequelize) => {

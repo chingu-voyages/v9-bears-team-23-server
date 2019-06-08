@@ -1,4 +1,3 @@
-'use strict'
 const countries = require('../../helpers/countries')
 module.exports = {
   up: (queryInterface, Sequelize) => {

@@ -1,4 +1,3 @@
-'use strict'
 const languages = require('../../helpers/languages-english')
 module.exports = {
   up: (queryInterface, Sequelize) => {
