@@ -1,4 +1,4 @@
-const languages = require('../../helpers/languages-english')
+const languages = require('helpers/languages-english')
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Languages',
