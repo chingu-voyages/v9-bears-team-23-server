@@ -1,10 +1,17 @@
-module.exports = (sequelize, DataTypes) => {
-  const Skill = sequelize.define('Skill', {
+function Skill (sequelize, DataTypes) {
+  const skillModel = sequelize.define('skill', {
     name: DataTypes.STRING,
-  }, {})
-  Skill.associate = function (models) {
-    Skill.belongsToMany(models.User, {through: 'UsersSkills', foreignKey: 'skillId', as: 'users'})
-    Skill.hasMany(models.Adverts)
+  }, {
+    tableName: 'skill',
+    underscored: true,
+  })
+
+  skillModel.associate = function (models) {
+    skillModel.belongsToMany(models.user, {through: 'usersSkill', foreignKey: 'skillId', as: 'user'})
+    skillModel.hasMany(models.advert)
   }
-  return Skill
+
+  return skillModel
 }
+
+module.exports = Skill

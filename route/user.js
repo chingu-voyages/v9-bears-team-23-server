@@ -13,7 +13,6 @@ router.post('/signup', validate.body({
 
 router.get('/user', async (req, res, next) => {
   const r = await userRepo.getAll()
-  console.log(r)
   return res.json(r)
 })
 

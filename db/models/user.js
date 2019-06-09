@@ -7,7 +7,10 @@ function User (sequelize, DataTypes) {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    countryId: DataTypes.INTEGER,
+    countryId: {
+      type: DataTypes.INTEGER,
+      field: 'country_id',
+    },
     role: {
       type: DataTypes.ENUM,
       values: _.valuesIn(konst.role),
@@ -18,9 +21,9 @@ function User (sequelize, DataTypes) {
   })
 
   userModel.associate = function (models) {
-    User.belongsToMany(models.Language, {through: 'UsersLanguages', foreignKey: 'userId', as: 'languages'})
-    User.belongsToMany(models.Skill, {through: 'UsersSkills', foreignKey: 'userId', as: 'skills'})
-    User.belongsTo(models.Country)
+    userModel.belongsToMany(models.language, {through: 'usersLanguages', foreignKey: 'userId', as: 'language'})
+    userModel.belongsToMany(models.skill, {through: 'usersSkills', foreignKey: 'userId', as: 'skill'})
+    userModel.belongsTo(models.country)
   }
 
   return userModel

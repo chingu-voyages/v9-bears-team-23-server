@@ -1,28 +1,30 @@
+const models = require('db')
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('user', [
+    return models.user.bulkCreate([
       {
         username: 'John Doe',
         email: 'john@email.com',
         password: '123456',
         countryId: 1,
-        role: 'Student',
+        role: 'student',
       },
       {
         username: 'Jane Smith',
         email: 'Jane@email.com',
         password: '123456',
         countryId: 1,
-        role: 'Teacher',
+        role: 'tutor',
       },
       {
         username: 'Chris Parr',
         email: 'chris@email.com',
         password: '123456',
         countryId: 1,
-        role: 'Admin',
+        role: 'admin',
       },
-    ], {})
+    ])
   },
 
   down: (queryInterface, Sequelize) => {

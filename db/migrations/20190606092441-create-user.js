@@ -22,11 +22,12 @@ module.exports = {
       },
       countryId: {
         type: Sequelize.INTEGER,
+        field: 'country_id',
       },
       role: {
         type: Sequelize.ENUM,
         values: _.valuesIn(konst.role),
-        defaultValue: 'None',
+        defaultValue: 'none',
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -36,11 +37,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
+        field: 'created_at',
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
+        field: 'updated_at',
       },
     })
   },

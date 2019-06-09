@@ -1,12 +1,12 @@
 const languages = require('helpers/languages-english')
+const models = require('db')
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Languages',
-      languages
-      , {})
+    return models.language.bulkCreate(languages)
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Languages', null, {})
+    return queryInterface.bulkDelete('language', null, {})
   },
 }

@@ -1,12 +1,19 @@
-module.exports = (sequelize, DataTypes) => {
-  const Advert = sequelize.define('Advert', {
+function Advert (sequelize, DataTypes) {
+  const advertModel = sequelize.define('advert', {
     price: DataTypes.INTEGER,
     description: DataTypes.TEXT,
     userId: DataTypes.INTEGER,
-    skillId: DataTypes.INTEGER,
+    skillId: {
+      type: DataTypes.INTEGER,
+      field: 'skill_id',
+    },
   }, {})
-  Advert.associate = function (models) {
-    Advert.belongsTo(models.Skills)
+
+  advertModel.associate = function (models) {
+    advertModel.belongsTo(models.skill)
   }
-  return Advert
+
+  return advertModel
 }
+
+module.exports = Advert
