@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('UsersSkills', {
+    return queryInterface.createTable('users_skill', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'user',
           key: 'id',
         },
       },
@@ -19,23 +19,25 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Skills',
+          model: 'skill',
           key: 'id',
         },
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'created_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        updatedAt: 'updated_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('UsersSkills')
+    return queryInterface.dropTable('users_skill')
   },
 }

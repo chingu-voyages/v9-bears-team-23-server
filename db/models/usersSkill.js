@@ -1,11 +1,24 @@
-module.exports = (sequelize, DataTypes) => {
-  const UsersSkill = sequelize.define('UsersSkill', {
-    userId: DataTypes.INTEGER,
-    skillId: DataTypes.INTEGER,
-  }, {})
-  UsersSkill.associate = function (models) {
-    UsersSkill.belongsTo(models.User, {foreignKey: 'userId'})
-    UsersSkill.belongsTo(models.Skills, {foreignKey: 'skillId'})
+function UsersSkill (sequelize, DataTypes) {
+  const usersSkillModel = sequelize.define('usersSkill', {
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id',
+    },
+    skillId: {
+      type: DataTypes.INTEGER,
+      field: 'skill_id',
+    },
+  }, {
+    tableName: 'users_skill',
+    underscored: true,
+  })
+
+  usersSkillModel.associate = function (models) {
+    usersSkillModel.belongsTo(models.user, {foreignKey: 'userId'})
+    usersSkillModel.belongsTo(models.skill, {foreignKey: 'skillId'})
   }
-  return UsersSkill
+
+  return usersSkillModel
 }
+
+module.exports = UsersSkill

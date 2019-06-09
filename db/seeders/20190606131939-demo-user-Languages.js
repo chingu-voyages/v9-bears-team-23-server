@@ -1,6 +1,8 @@
+const models = require('db')
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('UsersLanguages', [
+    return models.usersLanguage.bulkCreate([
       {
         userId: 1,
         languageId: 1,
@@ -22,11 +24,10 @@ module.exports = {
         languageId: 1,
       },
 
-    ]
-    , {})
+    ])
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('UsersLanguages', null, {})
+    return queryInterface.bulkDelete('users_language', null, {})
   },
 }

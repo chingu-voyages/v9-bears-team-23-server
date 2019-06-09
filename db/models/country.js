@@ -1,11 +1,18 @@
-module.exports = (sequelize, DataTypes) => {
-  const Country = sequelize.define('Country', {
+function Country (sequelize, DataTypes) {
+  const countryModel = sequelize.define('country', {
     name: DataTypes.STRING,
     code: DataTypes.STRING,
     img: DataTypes.STRING,
-  }, {})
-  Country.associate = function (models) {
-    Country.hasMany(models.User)
+  }, {
+    tableName: 'country',
+    underscored: true,
+  })
+
+  countryModel.associate = function (models) {
+    countryModel.hasMany(models.user)
   }
-  return Country
+
+  return countryModel
 }
+
+module.exports = Country

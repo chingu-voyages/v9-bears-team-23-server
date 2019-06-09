@@ -1,12 +1,24 @@
-module.exports = (sequelize, DataTypes) => {
-  const UsersLanguage = sequelize.define('UsersLanguage', {
-    userId: DataTypes.INTEGER,
-    languageId: DataTypes.INTEGER,
-  }, {})
-  UsersLanguage.associate = function (models) {
-    // associations can be defined here
-    UsersLanguage.belongsTo(models.User, {foreignKey: 'userId'})
-    UsersLanguage.belongsTo(models.Language, {foreignKey: 'languageId'})
+function UsersLanguage (sequelize, DataTypes) {
+  const usersLanguageModel = sequelize.define('usersLanguage', {
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id',
+    },
+    languageId: {
+      type: DataTypes.INTEGER,
+      field: 'language_id',
+    },
+  }, {
+    tableName: 'users_language',
+    underscored: true,
+  })
+
+  usersLanguageModel.associate = function (models) {
+    usersLanguageModel.belongsTo(models.user, {foreignKey: 'userId'})
+    usersLanguageModel.belongsTo(models.language, {foreignKey: 'languageId'})
   }
-  return UsersLanguage
+
+  return usersLanguageModel
 }
+
+module.exports = UsersLanguage

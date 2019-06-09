@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Reviews', {
+    return queryInterface.createTable('review', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,16 +10,18 @@ module.exports = {
       advertId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'advert_id',
         references: {
-          model: 'Adverts',
+          model: 'advert',
           key: 'id',
         },
       },
       reviewerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'reviewer_id',
         references: {
-          model: 'Users',
+          model: 'user',
           key: 'id',
         },
       },
@@ -32,16 +34,18 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'created_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'updated_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Reviews')
+    return queryInterface.dropTable('review')
   },
 }

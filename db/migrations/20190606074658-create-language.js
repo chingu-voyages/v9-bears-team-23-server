@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Languages', {
+    return queryInterface.createTable('language', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,16 +13,18 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'created_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'updated_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Languages')
+    return queryInterface.dropTable('language')
   },
 }
