@@ -13,16 +13,20 @@ module.exports = {
       },
       username: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.CHAR(64),
+        allowNull: false,
       },
       countryId: {
         type: Sequelize.INTEGER,
         field: 'country_id',
+        allowNull: true,
       },
       role: {
         type: Sequelize.ENUM,
@@ -32,6 +36,14 @@ module.exports = {
         validate: {
           notEmpty: true,
         },
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        field: 'first_name',
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        field: 'last_name',
       },
       createdAt: {
         allowNull: false,

@@ -13,7 +13,7 @@ function validator (path, target, schema, options = {}) {
   const opts = _.defaults(options, defaults)
   const schemaCompiled = joi.compile(schema)
 
-  return async function (req, res, next) {
+  return function (req, res, next) {
     const input = _.get(req, path)
 
     const {error: err, value: data} = schemaCompiled.validate(input, opts)
@@ -24,13 +24,13 @@ function validator (path, target, schema, options = {}) {
 
     _.update(req, `v.${target}`, prevData => ({...prevData, ...data}))
 
-    await next()
+    return next()
   }
 }
 
 module.exports = {
-  body: validator.bind(null, 'request.body', 'body'),
-  header: validator.bind(null, 'request.header', 'header'),
+  body: validator.bind(null, 'body', 'body'),
+  header: validator.bind(null, 'headers', 'header'),
   param: validator.bind(null, 'params', 'param'),
-  query: validator.bind(null, 'request.query', 'query'),
+  query: validator.bind(null, 'query', 'query'),
 }

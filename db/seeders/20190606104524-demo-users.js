@@ -9,6 +9,8 @@ module.exports = {
         password: '123456',
         countryId: 1,
         role: 'student',
+        firstName: 'Johhny',
+        lastName: 'Doe',
       },
       {
         username: 'Jane Smith',
@@ -16,6 +18,8 @@ module.exports = {
         password: '123456',
         countryId: 1,
         role: 'tutor',
+        firstName: 'Jane',
+        lastName: 'Smith',
       },
       {
         username: 'Chris Parr',
@@ -23,6 +27,8 @@ module.exports = {
         password: '123456',
         countryId: 1,
         role: 'admin',
+        firstName: 'Chris',
+        lastName: 'Parr',
       },
     ])
   },
