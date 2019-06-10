@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const joi = require('joi')
+const jwt = require('jsonwebtoken')
 
 const validate = require('middleware/validate')
 const {apiFail, apiSuccess} = require('helpers/responseHandler')
@@ -17,6 +18,16 @@ router.post('/signup', validate.body({
   userRepo.signup({username, email, password, firstName, lastName})
   .then(apiSuccess(res))
   .catch(apiFail(res))
+})
+
+router.post('/auth', validate.body({
+  email: joi.string().email().required(),
+  password: joi.string().min(5).max(15).required(),
+}), async (req, res, next) => {
+  const {email, password} = req.v.body
+  const user = await userRepo.getByEmailPassword(email, password)
+  const token = jwt.sign({id: user.id}, process.env.JWT_SECRET)
+  apiSuccess(res)({token})
 })
 
 router.get('/user', (req, res, next) => {

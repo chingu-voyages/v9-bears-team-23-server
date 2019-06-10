@@ -1,4 +1,7 @@
+const _ = require('lodash') // eslint-disable-line
+
 const models = require('db')
+const error = require('error')
 
 const helperRepo = require('repo/helper')
 
@@ -10,18 +13,34 @@ async function signup ({password, ...rest}) {
   .then(res => ({id: res.id}))
 }
 
-function getAll () {
+async function getAll () {
   return models.user.findAll()
 }
 
-function getById (userId) {
+async function getById (userId) {
   return models.user.findOne({
     where: {id: userId},
   })
+  .catch(error.db)
+}
+
+async function getByEmail (email) {
+  return models.user.findOne({
+    where: {email},
+  })
+  .catch(error.db)
+}
+
+async function getByEmailPassword (email, password) {
+  const user = await getByEmail(email)
+  await helperRepo.checkPasswordWithHash(password, user.password)
+  return user
 }
 
 module.exports = {
   getAll,
+  getByEmail,
+  getByEmailPassword,
   getById,
   signup,
 }
