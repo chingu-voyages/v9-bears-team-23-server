@@ -11,3 +11,10 @@ read = 1000
 write = 1001
 delete = 1002
 internal = 1003
+
+[user]
+password_wrong = 2001
+password_invalid = 2002
+not_found = 2003
+duplicate = 2004
+update = 2005

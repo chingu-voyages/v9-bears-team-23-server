@@ -18,9 +18,10 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
-        type: Sequelize.CHAR(64),
+        type: Sequelize.CHAR(60),
         allowNull: false,
       },
       countryId: {
