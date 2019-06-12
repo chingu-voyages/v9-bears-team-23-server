@@ -3,6 +3,7 @@ const joi = require('joi')
 const jwt = require('jsonwebtoken')
 
 const validate = require('middleware/validate')
+const auth = require('middleware/auth')
 const {apiFail, apiSuccess} = require('helpers/responseHandler')
 
 const userRepo = require('repo/user')
@@ -30,13 +31,13 @@ router.post('/auth', validate.body({
   apiSuccess(res)({token})
 })
 
-router.get('/user', (req, res, next) => {
+router.get('/user', auth, (req, res, next) => {
   userRepo.getAll()
   .then(apiSuccess(res))
   .catch(apiFail(res))
 })
 
-router.get('/user/:userId', validate.param({
+router.get('/user/:userId', auth, validate.param({
   userId: joi.number().positive().required(),
 }), (req, res) => {
   const {userId} = req.v.param
