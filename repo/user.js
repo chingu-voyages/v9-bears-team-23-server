@@ -37,7 +37,12 @@ async function getByEmailPassword (email, password) {
   return user
 }
 
+async function deleteById (id) {
+  return models.user.destroy({where: {id}})
+}
+
 module.exports = {
+  deleteById,
   getAll,
   getByEmail,
   getByEmailPassword,

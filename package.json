@@ -12,7 +12,8 @@
     "db:setup": "sequelize db:create db:migrate db:seed",
     "sequelize": "sequelize",
     "dev": "run-p -s dev:server",
-    "dev:server": "nodemon -q -I -e js,json -i package.json -- -r @babel/register index.js"
+    "dev:server": "nodemon -q -I -e js,json -i package.json -- -r @babel/register index.js",
+    "test": "tape -r @babel/register -r ./env **/*.test.js | tap-spec"
   },
   "keywords": [],
   "author": "",
@@ -35,8 +36,6 @@
     "pg": "^7.11.0",
     "sequelize": "^5.8.7",
     "sequelize-cli": "^5.4.0",
-    "supertest": "^4.0.2",
-    "tape": "^4.10.2",
     "toml-require": "^1.2.0"
   },
   "devDependencies": {
@@ -46,6 +45,9 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.2"
   }
 }

@@ -4,7 +4,7 @@ const supertest = require('supertest')
 const tape = require('tape')
 
 const {sequelize} = require('db')
-const request = supertest(require('app').callback())
+const request = supertest(require('app'))
 
 const store = new Map()
 
