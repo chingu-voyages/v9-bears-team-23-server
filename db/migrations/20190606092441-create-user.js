@@ -46,6 +46,11 @@ module.exports = {
         type: Sequelize.STRING,
         field: 'last_name',
       },
+      rating: {
+        type: Sequelize.DECIMAL(1, 2),
+        defaultValue: 0,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

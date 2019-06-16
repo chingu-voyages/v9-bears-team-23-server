@@ -35,14 +35,19 @@ function User (sequelize, DataTypes) {
       field: 'last_name',
       required: true,
     },
+    rating: {
+      type: DataTypes.DECIMAL(1, 2),
+      defaultValue: 0,
+      allowNull: false,
+    },
   }, {
     tableName: 'user',
     underscored: true,
   })
 
   userModel.associate = function (models) {
-    userModel.belongsToMany(models.language, {through: 'usersLanguages', foreignKey: 'userId', as: 'language'})
-    userModel.belongsToMany(models.skill, {through: 'usersSkills', foreignKey: 'userId', as: 'skill'})
+    userModel.belongsToMany(models.language, {through: 'usersLanguage', foreignKey: 'userId', as: 'language'})
+    userModel.belongsToMany(models.skill, {through: 'usersSkill', foreignKey: 'userId', as: 'skill'})
     userModel.belongsTo(models.country)
   }
 

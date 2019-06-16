@@ -16,6 +16,7 @@ router.post('/signup', validate.body({
   password: joi.string().min(5).max(15).required(),
 }), (req, res) => {
   const {username, email, password, firstName, lastName} = req.v.body
+
   userRepo.signup({username, email, password, firstName, lastName})
   .then(apiSuccess(res))
   .catch(apiFail(res))
@@ -28,6 +29,7 @@ router.post('/auth', validate.body({
   const {email, password} = req.v.body
   const user = await userRepo.getByEmailPassword(email, password)
   const token = jwt.sign({id: user.id}, process.env.JWT_SECRET)
+
   apiSuccess(res)({token})
 })
 
@@ -37,10 +39,27 @@ router.get('/user', auth, (req, res, next) => {
   .catch(apiFail(res))
 })
 
+router.get('/tutor', (req, res, next) => {
+  userRepo.getTutors()
+  .then(apiSuccess(res))
+  .catch(apiFail(res))
+})
+
+router.get('/tutor/:tutorId', validate.param({
+  tutorId: joi.number().positive().required(),
+}), (req, res, next) => {
+  const {tutorId} = req.v.param
+
+  userRepo.getByTutorId(tutorId)
+  .then(apiSuccess(res))
+  .catch(apiFail(res))
+})
+
 router.get('/user/:userId', auth, validate.param({
   userId: joi.number().positive().required(),
 }), (req, res) => {
   const {userId} = req.v.param
+
   userRepo.getById(userId)
   .then(apiSuccess(res))
   .catch(apiFail(res))

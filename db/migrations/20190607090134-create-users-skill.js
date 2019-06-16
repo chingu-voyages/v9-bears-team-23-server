@@ -10,6 +10,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'user_id',
         references: {
           model: 'user',
           key: 'id',
@@ -18,6 +19,7 @@ module.exports = {
       skillId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'skill_id',
         references: {
           model: 'skill',
           key: 'id',
@@ -32,7 +34,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        updatedAt: 'updated_at',
+        field: 'updated_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
     })
