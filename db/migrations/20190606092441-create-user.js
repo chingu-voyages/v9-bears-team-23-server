@@ -24,11 +24,6 @@ module.exports = {
         type: Sequelize.CHAR(60),
         allowNull: false,
       },
-      countryId: {
-        type: Sequelize.INTEGER,
-        field: 'country_id',
-        allowNull: true,
-      },
       role: {
         type: Sequelize.ENUM,
         values: _.valuesIn(konst.role),
@@ -47,7 +42,7 @@ module.exports = {
         field: 'last_name',
       },
       rating: {
-        type: Sequelize.DECIMAL(1, 2),
+        type: Sequelize.DECIMAL(2, 1),
         defaultValue: 0,
         allowNull: false,
       },

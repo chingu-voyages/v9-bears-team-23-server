@@ -16,11 +16,6 @@ function User (sequelize, DataTypes) {
       type: DataTypes.CHAR(64),
       required: true,
     },
-    countryId: {
-      type: DataTypes.INTEGER,
-      field: 'country_id',
-      required: false,
-    },
     role: {
       type: DataTypes.ENUM,
       values: _.valuesIn(konst.role),
@@ -48,7 +43,6 @@ function User (sequelize, DataTypes) {
   userModel.associate = function (models) {
     userModel.belongsToMany(models.language, {through: 'usersLanguage', foreignKey: 'userId', as: 'language'})
     userModel.belongsToMany(models.skill, {through: 'usersSkill', foreignKey: 'userId', as: 'skill'})
-    userModel.belongsTo(models.country)
   }
 
   return userModel

@@ -4,3 +4,7 @@ admin = 'admin'
 superadmin = 'superadmin'
 student = 'student'
 tutor = 'tutor'
+
+[advertSort]
+rating = 'rating'
+price = 'price'
