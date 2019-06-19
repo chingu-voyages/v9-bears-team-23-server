@@ -12,7 +12,8 @@
     "db:setup": "sequelize db:create db:migrate db:seed",
     "sequelize": "sequelize",
     "dev": "run-p -s dev:server",
-    "dev:server": "nodemon -q -I -e js,json -i package.json -- -r @babel/register index.js"
+    "dev:server": "nodemon -q -I -e js,json -i package.json -- -r @babel/register index.js",
+    "test": "tape -r @babel/register -r ./env **/*.test.js | tap-spec"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connection-string": "^2.4.0",
+    "crypto-random-string": "^3.0.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.17.1",
     "joi": "^14.3.1",
@@ -44,6 +46,9 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.2"
   }
 }

@@ -31,14 +31,24 @@ module.exports = {
           key: 'id',
         },
       },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'created_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'updated_at',
         defaultValue: Sequelize.literal("(now() at time zone 'utc')"),
       },
     })

@@ -13,11 +13,6 @@ function UsersSkill (sequelize, DataTypes) {
     underscored: true,
   })
 
-  usersSkillModel.associate = function (models) {
-    usersSkillModel.belongsTo(models.user, {foreignKey: 'userId'})
-    usersSkillModel.belongsTo(models.skill, {foreignKey: 'skillId'})
-  }
-
   return usersSkillModel
 }
 
