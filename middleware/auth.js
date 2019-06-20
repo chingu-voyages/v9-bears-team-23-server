@@ -4,8 +4,8 @@ const error = require('error')
 
 function auth (req, res, next) {
   const {authorization} = req.headers
-  const token = authorization.replace('Bearer ', '')
   try {
+    const token = authorization.replace('Bearer ', '')
     req.userId = jwt.verify(token, process.env.JWT_SECRET)
     next()
   } catch (err) {

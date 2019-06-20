@@ -1,7 +1,20 @@
 const _ = require('lodash')
 
+const error = require('error')
 const konst = require('konst')
 const models = require('db')
+
+async function create (userModel, advertData) {
+  return userModel.createAdvert(advertData)
+  .catch(err => {
+    switch (_.get(err, 'original.constraint')) {
+      case 'advert_skill_id_fkey':
+        throw error('skill.does_not_exist', err)
+      default:
+        throw error.db(err)
+    }
+  })
+}
 
 async function getBySkillId (skillId, {sortBy, orderBy, location}) {
   orderBy = _.toUpper(orderBy)
@@ -27,8 +40,10 @@ async function getBySkillId (skillId, {sortBy, orderBy, location}) {
   if (location) q.where = {location}
 
   return models.advert.findAll(q)
+  .catch(error.db)
 }
 
 module.exports = {
+  create,
   getBySkillId,
 }
