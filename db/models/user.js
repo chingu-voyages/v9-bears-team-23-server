@@ -43,6 +43,7 @@ function User (sequelize, DataTypes) {
   userModel.associate = function (models) {
     userModel.belongsToMany(models.language, {through: 'usersLanguage', foreignKey: 'userId', as: 'language'})
     userModel.belongsToMany(models.skill, {through: 'usersSkill', foreignKey: 'userId', as: 'skill'})
+    userModel.hasMany(models.advert)
   }
 
   return userModel

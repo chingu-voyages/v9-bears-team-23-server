@@ -1,5 +1,6 @@
 const models = require('db')
 const helperRepo = require('repo/helper')
+const konst = require('konst')
 
 const createdUsers = []
 
@@ -15,13 +16,14 @@ async function create (userData = {}) {
   })
 }
 
-async function generateUserData () {
+async function generateUserData (role = konst.role.student) {
   const userData = {
     email: 'test0@email.com',
     username: 'testUser0',
     firstName: 'testFirst',
     lastName: 'testLast',
     password: 'testPassword',
+    role,
   }
 
   for (const u of createdUsers) {

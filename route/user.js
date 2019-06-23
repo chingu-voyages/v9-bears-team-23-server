@@ -2,6 +2,7 @@ const router = require('express').Router()
 const joi = require('joi')
 const jwt = require('jsonwebtoken')
 
+const konst = require('konst')
 const validate = require('middleware/validate')
 const auth = require('middleware/auth')
 const {apiFail, apiSuccess} = require('helpers/responseHandler')
@@ -14,10 +15,11 @@ router.post('/signup', validate.body({
   firstName: joi.string().trim().required(),
   lastName: joi.string().trim().required(),
   password: joi.string().min(5).max(15).required(),
+  role: joi.string().valid([konst.role.tutor, konst.role.student]).trim().required(),
 }), (req, res) => {
-  const {username, email, password, firstName, lastName} = req.v.body
+  const {username, email, password, firstName, lastName, role} = req.v.body
 
-  userRepo.signup({username, email, password, firstName, lastName})
+  userRepo.signup({username, email, password, firstName, lastName, role})
   .then(apiSuccess(res))
   .catch(apiFail(res))
 })
